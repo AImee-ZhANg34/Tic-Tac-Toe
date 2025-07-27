@@ -1,10 +1,72 @@
-function flipCoin() {
-  const resultElement = document.getElementById('result');
-  const randomNumber = Math.random(); // Generates a number between 0 (inclusive) and 1 (exclusive)
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flip a Coin Game</title>
+  <style>
+    body {
+      font-family: "Lucida Console", monospace;
+      text-align: center;
+      background-color: #000000;
+      padding-top: 20px;
+    }
+    
+    h1 {
+      color: #FFD700;
+    }
+    
+    button {
+      background-color: #000000;
+      color: white;
+      padding: 15px 25px;
+      font-size: 18px;
+      font-family: "Lucida Console", monospace;
+  
 
-  if (randomNumber < 0.5) {
-    resultElement.textContent = 'Heads!';
-  } else {
-    resultElement.textContent = 'Tails!';
-  }
-}
+      border-radius: 15px;
+    }
+    button:hover {
+      background-color: #00b8ff;
+    }
+    #result {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: semi-bold;
+      color: #87CEFA;
+    }
+    #coin-image {
+      transition: transform 1s ease;
+ 
+  </style>
+</head>
+<body>
+
+  <h1>Flip a Coin!🪙</h1>
+  <button onclick="flipCoin()">Flip Coin</button>
+  <div id="result"></div>
+  <img id="coin-image" src="" alt="">
+
+  <script>
+    function flipCoin() {
+      let coin = document.getElementById("coin-image");
+      let resultDiv = document.getElementById("result");
+
+     
+      resultDiv.innerHTML = "Flipping...coin landed on...";
+
+      // Wait for animation to finish before showing result
+      setTimeout(() => {
+        let isHeads = Math.random() < 0.5;
+        let resultText = isHeads ? "Heads" : "Tails";
+        let imageUrl = isHeads
+          ? "https://upload.wikimedia.org/wikipedia/commons/1/1e/US_One_Cent_Obv.png"
+          : "https://upload.wikimedia.org/wikipedia/commons/7/79/US_One_Cent_Rev.png";
+
+        resultDiv.innerHTML = " " + resultText;
+        coin.src = imageUrl;
+ 
+      }, 600); // matches transition time
+    }
+  </script>
+
+</body>
+</html>
